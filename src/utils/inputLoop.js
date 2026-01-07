@@ -18,7 +18,7 @@ export const workerInputLoop = async (weekDayInputFn, weekEndInputFn, validator)
             const weekend = await weekEndInputFn();
             const parsedWeekday = validator(weekday);
             const parsedWeekend = validator(weekend);
-            return { weekday: parsedWeekday, weekend: parsedWeekend };
+            return { weekdayWorker: parsedWeekday, weekendWorker: parsedWeekend };
         } catch (err) {
             MissionUtils.Console.print(err.message);
         }
