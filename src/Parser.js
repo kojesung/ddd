@@ -1,4 +1,6 @@
 import { DAY_TO_INDEX } from './constants.js';
+import { hasSameName } from './utils/hasSameName.js';
+import { isNameValidLength } from './utils/isNameValidLength.js';
 
 class Parser {
     static monthDayParser(input) {
@@ -11,8 +13,16 @@ class Parser {
         if (!dayIndex) throw new Error('[ERROR] 시작 요일은 일요일 ~ 토요일 사이의 유효한 요일러 설정해주세요');
         return { month: parsedMonth, startDay: dayIndex };
     }
-    static weekDayWorkerList() {}
-    static weekEndWorkerList() {}
+    static workerListParser(input) {
+        const trimmed = input.trim();
+        if (trimmed === '') throw new Error('[ERROR] 근무자를 입력해주세요');
+        const workerList = trimmed.split(',').map((name) => name.trim());
+        if (hasSameName(workerList)) throw new Error('[ERROR] 근무자는 각 1회 들어갈 수 있습니다.');
+        console.log(workerList);
+        if (workerList.filter((worker) => isNameValidLength(worker)).length !== workerList.length)
+            throw new Error('[ERROR] 근무자의 이름은 최대 5글자입니다.');
+        return workerList;
+    }
 }
 
 export default Parser;
