@@ -1,4 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { workerValidator } from './workerValidator.js';
 
 export const inputLoop = async (inputFn, validator) => {
     while (true) {
@@ -18,6 +19,7 @@ export const workerInputLoop = async (weekDayInputFn, weekEndInputFn, validator)
             const weekend = await weekEndInputFn();
             const parsedWeekday = validator(weekday);
             const parsedWeekend = validator(weekend);
+            workerValidator(parsedWeekday, parsedWeekend);
             return { weekdayWorker: parsedWeekday, weekendWorker: parsedWeekend };
         } catch (err) {
             MissionUtils.Console.print(err.message);
