@@ -1,9 +1,12 @@
+import Calendar from '../src/Calendar.js';
+
 const month = new Calendar(
     5,
     1,
     ['제성', '하이', '포비'],
     ['수아', '제성', '하이', '포비', '루루', '글로', '솔로스타', '수아', '슬링키']
 );
+month.setWorker();
 describe('Calendar class test', () => {
     test('해당 달의 특정 일을 인자로 전달했을 때 무슨 요일인지 반환하는 메서드', () => {
         const day = month.getDay(5); //5일은 무슨 요일?
