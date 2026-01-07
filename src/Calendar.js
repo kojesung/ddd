@@ -49,8 +49,8 @@ class Calendar {
                     ? this.weekendWorkerList.indexOf(workerName)
                     : this.weekdayWorkerList.indexOf(workerName);
                 this.workerList[i] = isHoliday
-                    ? this.weekendWorkerList[(index + 1) % 7]
-                    : this.weekdayWorkerList[(index + 1) % 7];
+                    ? this.weekendWorkerList[(index + 1) % this.weekendWorkerList.length]
+                    : this.weekdayWorkerList[(index + 1) % this.weekdayWorkerList.length];
             }
         }
     }
